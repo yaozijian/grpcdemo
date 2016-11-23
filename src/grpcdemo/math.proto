@@ -1,0 +1,27 @@
+
+syntax = "proto3";
+
+package main;
+
+message op_request{
+	int32 a = 1;
+	int32 b = 2;
+}
+
+message op_reply{
+	int32 a = 1;
+	int32 b = 2;
+	int32 r = 3;
+}
+
+message operator{
+	int32 a = 1;
+}
+
+service math{
+	rpc add(op_request) returns (op_reply) {}
+	rpc addlist(stream operator) returns (operator) {}
+	rpc random(operator) returns (stream operator){}
+	rpc addstream(stream op_request) returns (stream op_reply){}
+}
+
